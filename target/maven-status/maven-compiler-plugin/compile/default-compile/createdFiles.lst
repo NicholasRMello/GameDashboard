@@ -1,0 +1,11 @@
+com\nicholas\service\RawgClient$GameDetails.class
+com\nicholas\dao\SessionDao.class
+com\nicholas\service\RawgClient$GameInfo.class
+com\nicholas\model\Session.class
+com\nicholas\dao\GameGoalDao.class
+com\nicholas\Main.class
+com\nicholas\model\GameGoal.class
+com\nicholas\ui\AddSessionDialog.class
+com\nicholas\service\RawgClient.class
+com\nicholas\dao\DaoTest.class
+com\nicholas\Main$GoalCell.class
