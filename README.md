@@ -1,3 +1,7 @@
+## 💾 Download
+
+🔽 [**Click here to download the executable version (.zip)**](https://github.com/NicholasRMello/GameDashboard/releases/download/1.0/Game.Dashboard.-.Executable.Version.zip)
+
 # 🎮 Game Dashboard
 
 An interactive dashboard to help you organize and complete your gaming goals!
