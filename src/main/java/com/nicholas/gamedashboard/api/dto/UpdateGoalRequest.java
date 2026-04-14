@@ -13,6 +13,8 @@ public record UpdateGoalRequest(
     @NotNull @DecimalMin("0.0") @DecimalMax("2000.0") Double estimatedHours,
     @NotNull @DecimalMin("0.1") @DecimalMax("24.0") Double hoursPerDay,
     @NotNull @DecimalMin("1") @DecimalMax("7") Integer daysPerWeek,
+    @NotNull @DecimalMin("0.0") @DecimalMax("1000000.0") Double price,
+    @NotBlank @Size(min = 3, max = 3) String currency,
     @Size(max = 500) String imageUrl,
     Long rawgId,
     String released,

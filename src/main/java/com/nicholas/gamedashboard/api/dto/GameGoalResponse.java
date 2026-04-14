@@ -10,6 +10,8 @@ public record GameGoalResponse(
     double estimatedHours,
     double hoursPerDay,
     int daysPerWeek,
+    double price,
+    String currency,
     int displayOrder,
     String imageUrl,
     Long rawgId,

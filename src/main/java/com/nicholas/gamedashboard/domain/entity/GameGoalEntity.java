@@ -33,6 +33,12 @@ public class GameGoalEntity {
     private int daysPerWeek;
 
     @Column(nullable = false)
+    private double price;
+
+    @Column(nullable = false, length = 3)
+    private String currency;
+
+    @Column(nullable = false)
     private int displayOrder;
 
     @Column(length = 500)
@@ -106,6 +112,22 @@ public class GameGoalEntity {
 
     public void setDaysPerWeek(int daysPerWeek) {
         this.daysPerWeek = daysPerWeek;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public int getDisplayOrder() {

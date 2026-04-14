@@ -121,6 +121,42 @@ body {
   text-shadow: 0 0 12px rgba(130, 216, 255, 0.4);
 }
 
+.hero-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(105, 220, 255, 0.25);
+  background: rgba(5, 12, 24, 0.55);
+}
+
+.lang-btn {
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 0.32rem 0.62rem;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.lang-btn.active {
+  color: #d9fff8;
+  background: linear-gradient(130deg, rgba(0, 246, 210, 0.3), rgba(139, 98, 255, 0.22));
+}
+
 h1,
 h2,
 h3 {
@@ -251,9 +287,27 @@ h1 {
 
 .section-head {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 0.7rem;
+  flex-wrap: wrap;
   margin-bottom: 1rem;
+}
+
+.section-head h2,
+.section-head h3,
+.section-head span,
+.list-head h3,
+.sessions-log h3 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.goals-panel .section-head h2,
+.detail-panel .section-head h2 {
+  font-size: clamp(1.55rem, 2.7vw, 2.35rem);
+  line-height: 1.08;
 }
 
 .section-head span {
@@ -264,6 +318,7 @@ h1 {
 .panel-actions {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.6rem;
 }
 
@@ -401,7 +456,9 @@ select {
   margin-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-start;
+  gap: 0.55rem;
+  flex-wrap: wrap;
 }
 
 .list-head span {
@@ -454,6 +511,13 @@ select {
   cursor: pointer;
   display: grid;
   gap: 0.2rem;
+  min-width: 0;
+}
+
+.goal-item > button:first-child strong,
+.goal-item > button:first-child small {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .goal-item > button:first-child small {

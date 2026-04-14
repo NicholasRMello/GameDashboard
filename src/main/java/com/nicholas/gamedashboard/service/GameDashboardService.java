@@ -52,7 +52,7 @@ public class GameDashboardService {
     public GameGoalResponse createGoal(CreateGoalRequest request) {
         int nextOrder = goalRepository.findAll().size();
         GameGoalEntity goal = new GameGoalEntity();
-        applyGoalRequest(goal, request.title(), request.estimatedHours(), request.hoursPerDay(), request.daysPerWeek(),
+        applyGoalRequest(goal, request.title(), request.estimatedHours(), request.hoursPerDay(), request.daysPerWeek(), request.price(), request.currency(),
             request.imageUrl(), request.rawgId(), request.released(), request.rating(), request.genres(), request.description());
         goal.setDisplayOrder(nextOrder);
 
@@ -65,7 +65,7 @@ public class GameDashboardService {
         GameGoalEntity goal = goalRepository.findById(goalId)
             .orElseThrow(() -> new NotFoundException("Goal not found"));
 
-        applyGoalRequest(goal, request.title(), request.estimatedHours(), request.hoursPerDay(), request.daysPerWeek(),
+        applyGoalRequest(goal, request.title(), request.estimatedHours(), request.hoursPerDay(), request.daysPerWeek(), request.price(), request.currency(),
             request.imageUrl(), request.rawgId(), request.released(), request.rating(), request.genres(), request.description());
 
         return toGoalResponse(goalRepository.save(goal));
@@ -176,6 +176,8 @@ public class GameDashboardService {
         Double estimatedHours,
         Double hoursPerDay,
         Integer daysPerWeek,
+        Double price,
+        String currency,
         String imageUrl,
         Long rawgId,
         String released,
@@ -187,6 +189,8 @@ public class GameDashboardService {
         goal.setEstimatedHours(estimatedHours);
         goal.setHoursPerDay(hoursPerDay);
         goal.setDaysPerWeek(daysPerWeek);
+        goal.setPrice(price);
+        goal.setCurrency(currency == null ? "BRL" : currency.trim().toUpperCase());
         goal.setImageUrl(blankToNull(imageUrl));
         goal.setRawgId(rawgId);
         goal.setReleased(parseDateSafely(released));
@@ -207,6 +211,8 @@ public class GameDashboardService {
             round(goal.getEstimatedHours()),
             round(goal.getHoursPerDay()),
             goal.getDaysPerWeek(),
+            round(goal.getPrice()),
+            goal.getCurrency(),
             goal.getDisplayOrder(),
             goal.getImageUrl(),
             goal.getRawgId(),

@@ -12,17 +12,20 @@ import {
 } from 'recharts'
 
 type GoalChartsProps = {
+  language: 'en' | 'pt-BR'
   finishChartData: Array<{ title: string; days: number }>
   projectionData: Array<{ label: string; hours: number }>
   selectedTitle: string
   estimatedHours: number
 }
 
-export function GoalCharts({ finishChartData, projectionData, selectedTitle, estimatedHours }: GoalChartsProps) {
+export function GoalCharts({ language, finishChartData, projectionData, selectedTitle, estimatedHours }: GoalChartsProps) {
+  const isPt = language === 'pt-BR'
+
   return (
     <>
       <div className="chart-block">
-        <h3>Prazo estimado por jogo (dias)</h3>
+        <h3>{isPt ? 'Prazo estimado por jogo (dias)' : 'Estimated finish time per game (days)'}</h3>
         <ResponsiveContainer width="100%" height={220}>
           <BarChart data={finishChartData} barCategoryGap="28%">
             <defs>
@@ -39,7 +42,10 @@ export function GoalCharts({ finishChartData, projectionData, selectedTitle, est
               contentStyle={{ background: 'rgba(11, 14, 16, 0.92)', border: '1px solid rgba(255,255,255,0.16)', borderRadius: '10px' }}
               labelStyle={{ color: '#f5f4ef', fontWeight: 700, marginBottom: '4px' }}
               itemStyle={{ color: '#bab8af' }}
-              formatter={(value) => [`${Number(value).toFixed(1)} dias`, 'Prazo estimado']}
+              formatter={(value) => [
+                `${Number(value).toFixed(1)} ${isPt ? 'dias' : 'days'}`,
+                isPt ? 'Prazo estimado' : 'Estimated finish time',
+              ]}
             />
             <Bar dataKey="days" fill="url(#daysGradient)" radius={[8, 8, 2, 2]} />
           </BarChart>
@@ -47,7 +53,7 @@ export function GoalCharts({ finishChartData, projectionData, selectedTitle, est
       </div>
 
       <div className="chart-block">
-        <h3>Projecao de horas acumuladas ({selectedTitle})</h3>
+        <h3>{isPt ? 'Projecao de horas acumuladas' : 'Accumulated hours projection'} ({selectedTitle})</h3>
         <ResponsiveContainer width="100%" height={220}>
           <AreaChart data={projectionData}>
             <defs>
@@ -67,7 +73,7 @@ export function GoalCharts({ finishChartData, projectionData, selectedTitle, est
               formatter={(value) => {
                 const hours = Number(value)
                 const completion = Math.min(100, (hours / Math.max(estimatedHours, 0.1)) * 100)
-                return [`${hours.toFixed(1)}h (${completion.toFixed(1)}%)`, 'Horas acumuladas']
+                return [`${hours.toFixed(1)}h (${completion.toFixed(1)}%)`, isPt ? 'Horas acumuladas' : 'Accumulated hours']
               }}
               labelFormatter={(label) => `${String(label)} - ${selectedTitle}`}
             />
@@ -75,7 +81,7 @@ export function GoalCharts({ finishChartData, projectionData, selectedTitle, est
               y={estimatedHours}
               stroke="rgba(255,164,58,0.9)"
               strokeDasharray="5 5"
-              label={{ value: 'Meta', fill: '#ffcf8c', fontSize: 11, position: 'insideTopRight' }}
+              label={{ value: isPt ? 'Meta' : 'Target', fill: '#ffcf8c', fontSize: 11, position: 'insideTopRight' }}
             />
             <Area
               type="monotone"
