@@ -3,6 +3,14 @@ target/
 *.log
 .env
 
+# Copilot/agent skills artifacts (privacy)
+.agents/
+skills-lock.json
+**/skills-lock.json
+**/*.prompt.md
+**/*.agent.md
+**/SKILL.md
+
 # IDE
 .idea/
 .vscode/
